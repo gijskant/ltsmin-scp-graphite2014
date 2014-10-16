@@ -5,22 +5,14 @@ Instructions for installing LTSmin and replicating the runs reported in our TACA
 Prerequisites
 --
 First, for several experiments, the [mCRL2](http://mcrl2.org) toolset is required.
-We support the official 201409.0 release:
-```
-wget http://www.mcrl2.org/download/release/mcrl2-201409.0.tar.gz
-tar xfz mcrl2-201409.0.tar.gz
-cd mcrl2-201409.0
-cmake . -DMCRL2_ENABLE_GUI_TOOLS=OFF -DMCRL2_ENABLE_EXPERIMENTAL=ON
-make && make install
-```
+We support the official 201409.0 release. To install, run `install-mcrl2.sh`.
 However, recently a bug in the connection between mCRL2 and LTSmin for the PBES language for the
-parallel tools has been fixed. The fix is available in the SVN repository of mCRL2:
-```
-svn checkout https://svn.win.tue.nl/repos/MCRL2/trunk mcrl2-13132 -r 13132
-cd mcrl2-13132
-cmake . -DMCRL2_ENABLE_GUI_TOOLS=OFF -DMCRL2_ENABLE_EXPERIMENTAL=ON
-make && make install
-```
+parallel tools has been fixed. The fix is available in the SVN repository of mCRL2.
+To install, run `install-mcrl2-svn.sh`.
+Both scripts install mCRL2 in your current working directory.
+Be patient, building mCRL2 can take a while. Perhaps it is a good idea to check out the 
+binary releases of mCRL2: http://mcrl2.org/release/user_manual/download.html.
+
 You may need to execute `ldconfig` as root or run:
 ```
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<prefix>/lib/mcrl2/
