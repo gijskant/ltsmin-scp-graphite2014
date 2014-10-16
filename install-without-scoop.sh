@@ -8,5 +8,4 @@ cd ltsmin
 git submodule update --init
 ./ltsminreconf
 ./configure --without-scoop --prefix=$prefix
-make
-echo Type \"cd ltsmin; make install\" to install LTSmin in $prefix.
+make && make install
