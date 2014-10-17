@@ -27,29 +27,29 @@ gcc -shared -o Problem.so -I$LTSMIN/include -std=c99 -fPIC -O2 \
 ```
 Step 3: run the examples from the paper:
 --
-* a.
+a)
 ```
 mkdir Error/
 pins2lts-sym Problem.so --action=error --trace=Error/
 ltsmin-printtrace Error/error_6.gcf | grep action | cut -f3 -d=
 ```
-* b.
+b)
 ```
 pins2lts-sym Problem.so --no-exit --action=error --trace=Error/
 ^C
 ls Error/
 ```
-* c.
+c)
 ```
 pins2lts-sym Problem.so --order=par-prev --vset=lddmc --lddmc-tablesize=30 \
   --pins-guards=assume-true --no-soundness-check --when |& tee pins2lts-sym-lddmc.log
 ```
-* d.
+d)
 ```
 pins2lts-mc Problem.so --strategy=sbfs --state=cleary-tree --when |& tee pins2lts-mc-cleary.log
 ```
 
-* e.
+e)
 ```
 pins2lts-mc Problem.so --ltl='a94==9 U a95==12' \
      --strategy=cndfs --ltl-semantics=ltsmin --trace=Error/ltl.gcf
