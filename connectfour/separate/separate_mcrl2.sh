@@ -1,5 +1,6 @@
 #!/bin/bash
 
+BIN_DIR=../../bin/
 input=four5
 
-memtime lps2lts -v -rjittyc ${input}.lps
+${BIN_DIR}memtime ${BIN_DIR}lps2lts -v -rjittyc ${input}.lps
