@@ -17,15 +17,8 @@ You may need to execute `ldconfig` as root or run:
 ```
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<prefix>/lib/mcrl2/
 ```
-We use memtime for measuring time and memory usage:
-```
-git clone http://fmt.cs.utwente.nl/tools/scm/memtime.git
-cd memtime
-git submodule update --init
-./memtimereconf
-./configure
-make && make install
-```
+We use memtime for measuring time and memory usage.
+To install, run `install-memtime.sh`.
 
 Installing LTSmin
 --
@@ -36,7 +29,6 @@ however, the Mapa language will then not be available.
 
 Case studies
 --
-Models and scripts will be available soon:
-* GARP in subdirectory `garp`
+Models and scripts to run the case studies are in the subdirectories:
 * RERS in subdirectory `rers`
 * Connect Four in subdirectory `connectfour`
