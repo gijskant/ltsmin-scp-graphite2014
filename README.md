@@ -2,6 +2,8 @@ ltsmin-tacas2014
 ================
 Instructions for installing LTSmin and replicating the runs reported in our TACAS 2014 submission.
 
+Some scripts assume the tools to be installed in the current directory (`ltsmin-tacas2014`).
+
 Prerequisites
 --
 First, for several experiments, the [mCRL2](http://mcrl2.org) toolset is required.
