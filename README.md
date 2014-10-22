@@ -37,3 +37,4 @@ Case studies
 Models and scripts to run the case studies are in the subdirectories:
 * RERS in subdirectory `rers`
 * Connect Four in subdirectory `connectfour`
+* Sokoban in subdirectory `sokoban`
