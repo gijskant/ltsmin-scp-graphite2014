@@ -14,14 +14,17 @@ Step 1: download and install the LTSmin toolset
 --
 Step 2: compile sources to object files
 --
-```gcc -c -I/usr/local/include/ltsmin -I. -std=c99 -fPIC sokoboard.c```
-```gcc -c -I/usr/local/include/ltsmin -I. -std=c99 -fPIC dlopen-impl.c```
+```
+gcc -c -I/usr/local/include/ltsmin -I. -std=c99 -fPIC sokoboard.c
+gcc -c -I/usr/local/include/ltsmin -I. -std=c99 -fPIC dlopen-impl.c
+```
 
 Step 3: create shared library
 --
 ```gcc -shared -o sokoboard.so dlopen-impl.o sokoboard.o```
 
 Step 4: run the example from the paper
+--
 ```pins2lts-seq sokoboard.so --invariant="! goal" --trace=solution.gcf```
 
 Result:

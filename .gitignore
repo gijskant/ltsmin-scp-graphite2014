@@ -8,3 +8,5 @@
 /mcrl2-201409.0.tar.gz
 *.so
 *.o
+*.gcf
+
