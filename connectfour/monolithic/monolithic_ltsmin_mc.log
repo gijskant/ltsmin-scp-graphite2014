@@ -1,0 +1,75 @@
+lps2lts-mc: =============================================================================
+lps2lts-mc: Runtime environment could only preallocate 70 GB while requesting 283 GB.
+lps2lts-mc:         Configure your system limits to exploit all memory.
+lps2lts-mc: =============================================================================
+lps2lts-mc( 0/16): mCRL2 language module initialized
+lps2lts-mc( 2/16): mCRL2 language module initialized
+lps2lts-mc( 3/16): mCRL2 language module initialized
+lps2lts-mc( 1/16): mCRL2 language module initialized
+lps2lts-mc( 7/16): mCRL2 language module initialized
+lps2lts-mc( 5/16): mCRL2 language module initialized
+lps2lts-mc(10/16): mCRL2 language module initialized
+lps2lts-mc(13/16): mCRL2 language module initialized
+lps2lts-mc(12/16): mCRL2 language module initialized
+lps2lts-mc(11/16): mCRL2 language module initialized
+lps2lts-mc(14/16): mCRL2 language module initialized
+lps2lts-mc( 2/16): mCRL2 rewriter: jittyc
+lps2lts-mc( 0/16): Loading model from four_in_a_row5.lps
+lps2lts-mc( 0/16): mCRL2 rewriter: jittyc
+lps2lts-mc( 4/16): mCRL2 rewriter: jittyc
+lps2lts-mc( 1/16): mCRL2 rewriter: jittyc
+lps2lts-mc( 7/16): mCRL2 rewriter: jittyc
+lps2lts-mc(15/16): mCRL2 rewriter: jittyc
+lps2lts-mc( 5/16): mCRL2 rewriter: jittyc
+lps2lts-mc(11/16): mCRL2 rewriter: jittyc
+lps2lts-mc(12/16): mCRL2 rewriter: jittyc
+lps2lts-mc( 9/16): mCRL2 rewriter: jittyc
+lps2lts-mc( 0/16): Regroup specification: gs
+lps2lts-mc( 0/16): Regroup macro Group Safely: gc,gr,cw,rs
+lps2lts-mc( 0/16): Regroup macro Cols: cs,cn
+lps2lts-mc( 0/16): Regroup Column Sort
+lps2lts-mc( 0/16): Regroup Column Nub
+lps2lts-mc( 0/16): Regroup macro Rows: rs,rn
+lps2lts-mc( 0/16): Regroup Row Sort
+lps2lts-mc( 0/16): Regroup Row Nub
+lps2lts-mc( 0/16): Regroup Column sWaps
+lps2lts-mc( 0/16): Regroup Row Sort
+lps2lts-mc( 0/16): Regrouping: 12->6 groups
+lps2lts-mc( 0/16): There are 0 state labels and 1 edge labels
+lps2lts-mc( 0/16): State length is 21, there are 6 groups
+lps2lts-mc( 0/16): Running bfs using 16 cores
+lps2lts-mc( 0/16): Using a non-indexing tree table with 2^30 elements
+lps2lts-mc( 0/16): Successor permutation: none
+lps2lts-mc( 0/16): Global bits: 0, count bits: 0, local bits: 0
+lps2lts-mc( 0/16): ~3 levels ~96 states ~480 transitions
+lps2lts-mc( 0/16): ~4 levels ~192 states ~960 transitions
+lps2lts-mc(13/16): ~3 levels ~384 states ~1920 transitions
+lps2lts-mc(13/16): ~3 levels ~768 states ~3824 transitions
+lps2lts-mc(13/16): ~4 levels ~1536 states ~7664 transitions
+lps2lts-mc(13/16): ~4 levels ~3072 states ~15184 transitions
+lps2lts-mc(15/16): ~2 levels ~6144 states ~30000 transitions
+lps2lts-mc(15/16): ~3 levels ~12288 states ~58752 transitions
+lps2lts-mc(15/16): ~3 levels ~24576 states ~116816 transitions
+lps2lts-mc( 2/16): ~7 levels ~49152 states ~226256 transitions
+lps2lts-mc( 5/16): ~6 levels ~98304 states ~392352 transitions
+lps2lts-mc( 5/16): ~7 levels ~196608 states ~737744 transitions
+lps2lts-mc( 5/16): ~8 levels ~393216 states ~1442400 transitions
+lps2lts-mc( 5/16): ~9 levels ~786432 states ~2658160 transitions
+lps2lts-mc( 5/16): ~11 levels ~1572864 states ~4876672 transitions
+lps2lts-mc( 5/16): ~12 levels ~3145728 states ~8365488 transitions
+lps2lts-mc( 5/16): ~81 levels ~6291456 states ~11624944 transitions
+lps2lts-mc( 0/16):  
+lps2lts-mc( 0/16): mean standard work distribution: 3.0% (states) 11.4% (transitions)
+lps2lts-mc( 0/16):  
+lps2lts-mc( 0/16): Explored 7039582 states 15175974 transitions, fanout: 2.156
+lps2lts-mc( 0/16): Total exploration time 12.780 sec (12.770 sec minimum, 12.778 sec on average)
+lps2lts-mc( 0/16): States per second: 550828, Transitions per second: 1187478
+lps2lts-mc( 0/16):  
+lps2lts-mc( 0/16): Queue width: 8B, total height: 1141730, memory: 8.71MB
+lps2lts-mc( 0/16): Tree memory: 54.5MB, 8.1 B/state, compr.: 9.4%
+lps2lts-mc( 0/16): Tree fill ratio (roots/leafs): 0.0%/0.0%
+lps2lts-mc( 0/16): Stored 15 string chucks using 0MB
+lps2lts-mc( 0/16): Total memory used for chunk indexing: 0MB
+lps2lts-mc( 0/16): Est. total memory use: 63.2MB (~8200.7MB paged-in)
+Exit [0]
+298.84 user, 31.14 system, 22.23 elapsed -- Max VSize = 74273692KB, Max RSS = 5620KB
