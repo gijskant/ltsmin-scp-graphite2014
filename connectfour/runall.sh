@@ -23,5 +23,7 @@ cd pbes
 ./pbes_init.sh
 ./pbes_solve_mcrl2.sh 2> pbes_solve_mcrl2.log
 ./pbes_solve_ltsmin_sym.sh 2> pbes_solve_ltsmin_sym.log
+./pbes_6x5_solve_ltsmin_sym.sh 2> pbes_6x5_solve_ltsmin_sym.log
+./pbes_7x6_solve_ltsmin_sym.sh 2> pbes_7x6_solve_ltsmin_sym.log
 cd ..
 
