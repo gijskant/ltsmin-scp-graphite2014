@@ -50,4 +50,17 @@ lps2lts-sym: state space has 5464758 (~5.46e+06) states, 4389 BDD nodes
 ```
 
 Larger instance:
-
+```
+memtime lps2lts-sym --mcrl2=-rjitty -rgs four7.lps --vset=lddmc --order=par-prev --lddmc-tablesize=27
+```
+Result:
+```
+lps2lts-sym: Exploration took 3268 group checks and 3268 next state calls
+lps2lts-sym: reachability took 246.690 real 3907.080 user 27.900 sys
+lps2lts-sym: counting visited states...
+lps2lts-sym: counting took 361334.125 real 5769535.500 user 3467.490 sys
+lps2lts-sym: state space has 70208900607102 (~7.02e+13) states, 113351 BDD nodes
+5773458.21 user, 3495.83 system, 361581.93 elapsed -- Max VSize = 74276476KB, Max RSS = 5792KB
+```
+Note that currently counting states in LDDmc is very slow -- an issue which is being worked on.
+Also, memtime does not give a good estimate for the amount of memory used by the multi-core tools.
