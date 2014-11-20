@@ -1,8 +1,8 @@
-ltsmin-tacas2014
+ltsmin-scp-graphite2014
 ================
-Instructions for installing LTSmin and replicating the runs reported in our TACAS 2014 submission.
+Instructions for installing LTSmin and replicating the runs reported in our SCP submission (for the Graphite 2014 Special Issue).
 
-Some scripts assume the tools to be installed in the current directory (`ltsmin-tacas2014`).
+Some scripts assume the tools to be installed in the current directory (`ltsmin-scp-graphite2014`).
 
 Prerequisites
 --
@@ -35,6 +35,4 @@ there as well.
 Case studies
 --
 Models and scripts to run the case studies are in the subdirectories:
-* RERS in subdirectory `rers`
 * Connect Four in subdirectory `connectfour`
-* Sokoban in subdirectory `sokoban`
