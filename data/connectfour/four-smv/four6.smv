@@ -1,0 +1,511 @@
+-- Connect Four 6 x 5
+
+MODULE main
+  VAR
+    player     : {Yellow, Red};
+    board      : array 1..6 of array 1..5 of {None, Yellow, Red};
+    
+  DEFINE
+    yellowwins := 
+      -- Horizontal
+        (board[1][1] = Yellow & board[2][1] = Yellow & board[3][1] = Yellow & board[4][1] = Yellow & TRUE )
+      | (board[2][1] = Yellow & board[3][1] = Yellow & board[4][1] = Yellow & board[5][1] = Yellow & TRUE )
+      | (board[3][1] = Yellow & board[4][1] = Yellow & board[5][1] = Yellow & board[6][1] = Yellow & TRUE )
+      | (board[1][2] = Yellow & board[2][2] = Yellow & board[3][2] = Yellow & board[4][2] = Yellow & TRUE )
+      | (board[2][2] = Yellow & board[3][2] = Yellow & board[4][2] = Yellow & board[5][2] = Yellow & TRUE )
+      | (board[3][2] = Yellow & board[4][2] = Yellow & board[5][2] = Yellow & board[6][2] = Yellow & TRUE )
+      | (board[1][3] = Yellow & board[2][3] = Yellow & board[3][3] = Yellow & board[4][3] = Yellow & TRUE )
+      | (board[2][3] = Yellow & board[3][3] = Yellow & board[4][3] = Yellow & board[5][3] = Yellow & TRUE )
+      | (board[3][3] = Yellow & board[4][3] = Yellow & board[5][3] = Yellow & board[6][3] = Yellow & TRUE )
+      | (board[1][4] = Yellow & board[2][4] = Yellow & board[3][4] = Yellow & board[4][4] = Yellow & TRUE )
+      | (board[2][4] = Yellow & board[3][4] = Yellow & board[4][4] = Yellow & board[5][4] = Yellow & TRUE )
+      | (board[3][4] = Yellow & board[4][4] = Yellow & board[5][4] = Yellow & board[6][4] = Yellow & TRUE )
+      | (board[1][5] = Yellow & board[2][5] = Yellow & board[3][5] = Yellow & board[4][5] = Yellow & TRUE )
+      | (board[2][5] = Yellow & board[3][5] = Yellow & board[4][5] = Yellow & board[5][5] = Yellow & TRUE )
+      | (board[3][5] = Yellow & board[4][5] = Yellow & board[5][5] = Yellow & board[6][5] = Yellow & TRUE )
+      | 
+      -- Vertical
+        (board[1][1] = Yellow & board[1][2] = Yellow & board[1][3] = Yellow & board[1][4] = Yellow & TRUE )
+      | (board[1][2] = Yellow & board[1][3] = Yellow & board[1][4] = Yellow & board[1][5] = Yellow & TRUE )
+      | (board[2][1] = Yellow & board[2][2] = Yellow & board[2][3] = Yellow & board[2][4] = Yellow & TRUE )
+      | (board[2][2] = Yellow & board[2][3] = Yellow & board[2][4] = Yellow & board[2][5] = Yellow & TRUE )
+      | (board[3][1] = Yellow & board[3][2] = Yellow & board[3][3] = Yellow & board[3][4] = Yellow & TRUE )
+      | (board[3][2] = Yellow & board[3][3] = Yellow & board[3][4] = Yellow & board[3][5] = Yellow & TRUE )
+      | (board[4][1] = Yellow & board[4][2] = Yellow & board[4][3] = Yellow & board[4][4] = Yellow & TRUE )
+      | (board[4][2] = Yellow & board[4][3] = Yellow & board[4][4] = Yellow & board[4][5] = Yellow & TRUE )
+      | (board[5][1] = Yellow & board[5][2] = Yellow & board[5][3] = Yellow & board[5][4] = Yellow & TRUE )
+      | (board[5][2] = Yellow & board[5][3] = Yellow & board[5][4] = Yellow & board[5][5] = Yellow & TRUE )
+      | (board[6][1] = Yellow & board[6][2] = Yellow & board[6][3] = Yellow & board[6][4] = Yellow & TRUE )
+      | (board[6][2] = Yellow & board[6][3] = Yellow & board[6][4] = Yellow & board[6][5] = Yellow & TRUE )
+      | 
+      -- Diagonal
+        (board[1][1] = Yellow & board[2][2] = Yellow & board[3][3] = Yellow & board[4][4] = Yellow & TRUE )
+      | (board[1][2] = Yellow & board[2][3] = Yellow & board[3][4] = Yellow & board[4][5] = Yellow & TRUE )
+      | (board[2][1] = Yellow & board[3][2] = Yellow & board[4][3] = Yellow & board[5][4] = Yellow & TRUE )
+      | (board[2][2] = Yellow & board[3][3] = Yellow & board[4][4] = Yellow & board[5][5] = Yellow & TRUE )
+      | (board[3][1] = Yellow & board[4][2] = Yellow & board[5][3] = Yellow & board[6][4] = Yellow & TRUE )
+      | (board[3][2] = Yellow & board[4][3] = Yellow & board[5][4] = Yellow & board[6][5] = Yellow & TRUE )
+      | (board[6][1] = Yellow & board[5][2] = Yellow & board[4][3] = Yellow & board[3][4] = Yellow & TRUE )
+      | (board[6][2] = Yellow & board[5][3] = Yellow & board[4][4] = Yellow & board[3][5] = Yellow & TRUE )
+      | (board[5][1] = Yellow & board[4][2] = Yellow & board[3][3] = Yellow & board[2][4] = Yellow & TRUE )
+      | (board[5][2] = Yellow & board[4][3] = Yellow & board[3][4] = Yellow & board[2][5] = Yellow & TRUE )
+      | (board[4][1] = Yellow & board[3][2] = Yellow & board[2][3] = Yellow & board[1][4] = Yellow & TRUE )
+      | (board[4][2] = Yellow & board[3][3] = Yellow & board[2][4] = Yellow & board[1][5] = Yellow & TRUE )
+      | FALSE;
+    redwins := 
+      -- Horizontal
+        (board[1][1] = Red & board[2][1] = Red & board[3][1] = Red & board[4][1] = Red & TRUE )
+      | (board[2][1] = Red & board[3][1] = Red & board[4][1] = Red & board[5][1] = Red & TRUE )
+      | (board[3][1] = Red & board[4][1] = Red & board[5][1] = Red & board[6][1] = Red & TRUE )
+      | (board[1][2] = Red & board[2][2] = Red & board[3][2] = Red & board[4][2] = Red & TRUE )
+      | (board[2][2] = Red & board[3][2] = Red & board[4][2] = Red & board[5][2] = Red & TRUE )
+      | (board[3][2] = Red & board[4][2] = Red & board[5][2] = Red & board[6][2] = Red & TRUE )
+      | (board[1][3] = Red & board[2][3] = Red & board[3][3] = Red & board[4][3] = Red & TRUE )
+      | (board[2][3] = Red & board[3][3] = Red & board[4][3] = Red & board[5][3] = Red & TRUE )
+      | (board[3][3] = Red & board[4][3] = Red & board[5][3] = Red & board[6][3] = Red & TRUE )
+      | (board[1][4] = Red & board[2][4] = Red & board[3][4] = Red & board[4][4] = Red & TRUE )
+      | (board[2][4] = Red & board[3][4] = Red & board[4][4] = Red & board[5][4] = Red & TRUE )
+      | (board[3][4] = Red & board[4][4] = Red & board[5][4] = Red & board[6][4] = Red & TRUE )
+      | (board[1][5] = Red & board[2][5] = Red & board[3][5] = Red & board[4][5] = Red & TRUE )
+      | (board[2][5] = Red & board[3][5] = Red & board[4][5] = Red & board[5][5] = Red & TRUE )
+      | (board[3][5] = Red & board[4][5] = Red & board[5][5] = Red & board[6][5] = Red & TRUE )
+      | 
+      -- Vertical
+        (board[1][1] = Red & board[1][2] = Red & board[1][3] = Red & board[1][4] = Red & TRUE )
+      | (board[1][2] = Red & board[1][3] = Red & board[1][4] = Red & board[1][5] = Red & TRUE )
+      | (board[2][1] = Red & board[2][2] = Red & board[2][3] = Red & board[2][4] = Red & TRUE )
+      | (board[2][2] = Red & board[2][3] = Red & board[2][4] = Red & board[2][5] = Red & TRUE )
+      | (board[3][1] = Red & board[3][2] = Red & board[3][3] = Red & board[3][4] = Red & TRUE )
+      | (board[3][2] = Red & board[3][3] = Red & board[3][4] = Red & board[3][5] = Red & TRUE )
+      | (board[4][1] = Red & board[4][2] = Red & board[4][3] = Red & board[4][4] = Red & TRUE )
+      | (board[4][2] = Red & board[4][3] = Red & board[4][4] = Red & board[4][5] = Red & TRUE )
+      | (board[5][1] = Red & board[5][2] = Red & board[5][3] = Red & board[5][4] = Red & TRUE )
+      | (board[5][2] = Red & board[5][3] = Red & board[5][4] = Red & board[5][5] = Red & TRUE )
+      | (board[6][1] = Red & board[6][2] = Red & board[6][3] = Red & board[6][4] = Red & TRUE )
+      | (board[6][2] = Red & board[6][3] = Red & board[6][4] = Red & board[6][5] = Red & TRUE )
+      | 
+      -- Diagonal
+        (board[1][1] = Red & board[2][2] = Red & board[3][3] = Red & board[4][4] = Red & TRUE )
+      | (board[1][2] = Red & board[2][3] = Red & board[3][4] = Red & board[4][5] = Red & TRUE )
+      | (board[2][1] = Red & board[3][2] = Red & board[4][3] = Red & board[5][4] = Red & TRUE )
+      | (board[2][2] = Red & board[3][3] = Red & board[4][4] = Red & board[5][5] = Red & TRUE )
+      | (board[3][1] = Red & board[4][2] = Red & board[5][3] = Red & board[6][4] = Red & TRUE )
+      | (board[3][2] = Red & board[4][3] = Red & board[5][4] = Red & board[6][5] = Red & TRUE )
+      | (board[6][1] = Red & board[5][2] = Red & board[4][3] = Red & board[3][4] = Red & TRUE )
+      | (board[6][2] = Red & board[5][3] = Red & board[4][4] = Red & board[3][5] = Red & TRUE )
+      | (board[5][1] = Red & board[4][2] = Red & board[3][3] = Red & board[2][4] = Red & TRUE )
+      | (board[5][2] = Red & board[4][3] = Red & board[3][4] = Red & board[2][5] = Red & TRUE )
+      | (board[4][1] = Red & board[3][2] = Red & board[2][3] = Red & board[1][4] = Red & TRUE )
+      | (board[4][2] = Red & board[3][3] = Red & board[2][4] = Red & board[1][5] = Red & TRUE )
+      | FALSE;
+
+  SPEC
+    AG !(redwins & yellowwins)
+  SPEC
+    EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins | AX (!redwins & EX (yellowwins) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) 
+  SPEC
+    EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins | AX (!yellowwins & EX (redwins) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) 
+
+  INIT
+    player = Yellow &
+    board[1][1] = None &
+    board[1][2] = None &
+    board[1][3] = None &
+    board[1][4] = None &
+    board[1][5] = None &
+    board[2][1] = None &
+    board[2][2] = None &
+    board[2][3] = None &
+    board[2][4] = None &
+    board[2][5] = None &
+    board[3][1] = None &
+    board[3][2] = None &
+    board[3][3] = None &
+    board[3][4] = None &
+    board[3][5] = None &
+    board[4][1] = None &
+    board[4][2] = None &
+    board[4][3] = None &
+    board[4][4] = None &
+    board[4][5] = None &
+    board[5][1] = None &
+    board[5][2] = None &
+    board[5][3] = None &
+    board[5][4] = None &
+    board[5][5] = None &
+    board[6][1] = None &
+    board[6][2] = None &
+    board[6][3] = None &
+    board[6][4] = None &
+    board[6][5] = None &
+    TRUE
+
+  TRANS
+    (
+      ( 
+        !yellowwins & !redwins &
+        next(player) = case player = Yellow : Red;
+                            TRUE : Yellow;
+                       esac &
+        (board[1][5] = None) & 
+        (
+          next(board[1][1]) = case board[1][1] = None
+                                        : player;
+                                   TRUE : board[1][1];
+                              esac &
+          next(board[1][2]) = case board[1][1] != None & board[1][2] = None
+                                        : player;
+                                   TRUE : board[1][2];
+                              esac &
+          next(board[1][3]) = case board[1][1] != None & board[1][2] != None & board[1][3] = None
+                                        : player;
+                                   TRUE : board[1][3];
+                              esac &
+          next(board[1][4]) = case board[1][1] != None & board[1][2] != None & board[1][3] != None & board[1][4] = None
+                                        : player;
+                                   TRUE : board[1][4];
+                              esac &
+          next(board[1][5]) = case board[1][1] != None & board[1][2] != None & board[1][3] != None & board[1][4] != None & board[1][5] = None
+                                        : player;
+                                   TRUE : board[1][5];
+                              esac &
+          next(board[2][1]) = board[2][1] &
+          next(board[2][2]) = board[2][2] &
+          next(board[2][3]) = board[2][3] &
+          next(board[2][4]) = board[2][4] &
+          next(board[2][5]) = board[2][5] &
+          next(board[3][1]) = board[3][1] &
+          next(board[3][2]) = board[3][2] &
+          next(board[3][3]) = board[3][3] &
+          next(board[3][4]) = board[3][4] &
+          next(board[3][5]) = board[3][5] &
+          next(board[4][1]) = board[4][1] &
+          next(board[4][2]) = board[4][2] &
+          next(board[4][3]) = board[4][3] &
+          next(board[4][4]) = board[4][4] &
+          next(board[4][5]) = board[4][5] &
+          next(board[5][1]) = board[5][1] &
+          next(board[5][2]) = board[5][2] &
+          next(board[5][3]) = board[5][3] &
+          next(board[5][4]) = board[5][4] &
+          next(board[5][5]) = board[5][5] &
+          next(board[6][1]) = board[6][1] &
+          next(board[6][2]) = board[6][2] &
+          next(board[6][3]) = board[6][3] &
+          next(board[6][4]) = board[6][4] &
+          next(board[6][5]) = board[6][5] &
+          TRUE 
+        )
+      ) | 
+      ( 
+        !yellowwins & !redwins &
+        next(player) = case player = Yellow : Red;
+                            TRUE : Yellow;
+                       esac &
+        (board[2][5] = None) & 
+        (
+          next(board[2][1]) = case board[2][1] = None
+                                        : player;
+                                   TRUE : board[2][1];
+                              esac &
+          next(board[2][2]) = case board[2][1] != None & board[2][2] = None
+                                        : player;
+                                   TRUE : board[2][2];
+                              esac &
+          next(board[2][3]) = case board[2][1] != None & board[2][2] != None & board[2][3] = None
+                                        : player;
+                                   TRUE : board[2][3];
+                              esac &
+          next(board[2][4]) = case board[2][1] != None & board[2][2] != None & board[2][3] != None & board[2][4] = None
+                                        : player;
+                                   TRUE : board[2][4];
+                              esac &
+          next(board[2][5]) = case board[2][1] != None & board[2][2] != None & board[2][3] != None & board[2][4] != None & board[2][5] = None
+                                        : player;
+                                   TRUE : board[2][5];
+                              esac &
+          next(board[1][1]) = board[1][1] &
+          next(board[1][2]) = board[1][2] &
+          next(board[1][3]) = board[1][3] &
+          next(board[1][4]) = board[1][4] &
+          next(board[1][5]) = board[1][5] &
+          next(board[3][1]) = board[3][1] &
+          next(board[3][2]) = board[3][2] &
+          next(board[3][3]) = board[3][3] &
+          next(board[3][4]) = board[3][4] &
+          next(board[3][5]) = board[3][5] &
+          next(board[4][1]) = board[4][1] &
+          next(board[4][2]) = board[4][2] &
+          next(board[4][3]) = board[4][3] &
+          next(board[4][4]) = board[4][4] &
+          next(board[4][5]) = board[4][5] &
+          next(board[5][1]) = board[5][1] &
+          next(board[5][2]) = board[5][2] &
+          next(board[5][3]) = board[5][3] &
+          next(board[5][4]) = board[5][4] &
+          next(board[5][5]) = board[5][5] &
+          next(board[6][1]) = board[6][1] &
+          next(board[6][2]) = board[6][2] &
+          next(board[6][3]) = board[6][3] &
+          next(board[6][4]) = board[6][4] &
+          next(board[6][5]) = board[6][5] &
+          TRUE 
+        )
+      ) | 
+      ( 
+        !yellowwins & !redwins &
+        next(player) = case player = Yellow : Red;
+                            TRUE : Yellow;
+                       esac &
+        (board[3][5] = None) & 
+        (
+          next(board[3][1]) = case board[3][1] = None
+                                        : player;
+                                   TRUE : board[3][1];
+                              esac &
+          next(board[3][2]) = case board[3][1] != None & board[3][2] = None
+                                        : player;
+                                   TRUE : board[3][2];
+                              esac &
+          next(board[3][3]) = case board[3][1] != None & board[3][2] != None & board[3][3] = None
+                                        : player;
+                                   TRUE : board[3][3];
+                              esac &
+          next(board[3][4]) = case board[3][1] != None & board[3][2] != None & board[3][3] != None & board[3][4] = None
+                                        : player;
+                                   TRUE : board[3][4];
+                              esac &
+          next(board[3][5]) = case board[3][1] != None & board[3][2] != None & board[3][3] != None & board[3][4] != None & board[3][5] = None
+                                        : player;
+                                   TRUE : board[3][5];
+                              esac &
+          next(board[1][1]) = board[1][1] &
+          next(board[1][2]) = board[1][2] &
+          next(board[1][3]) = board[1][3] &
+          next(board[1][4]) = board[1][4] &
+          next(board[1][5]) = board[1][5] &
+          next(board[2][1]) = board[2][1] &
+          next(board[2][2]) = board[2][2] &
+          next(board[2][3]) = board[2][3] &
+          next(board[2][4]) = board[2][4] &
+          next(board[2][5]) = board[2][5] &
+          next(board[4][1]) = board[4][1] &
+          next(board[4][2]) = board[4][2] &
+          next(board[4][3]) = board[4][3] &
+          next(board[4][4]) = board[4][4] &
+          next(board[4][5]) = board[4][5] &
+          next(board[5][1]) = board[5][1] &
+          next(board[5][2]) = board[5][2] &
+          next(board[5][3]) = board[5][3] &
+          next(board[5][4]) = board[5][4] &
+          next(board[5][5]) = board[5][5] &
+          next(board[6][1]) = board[6][1] &
+          next(board[6][2]) = board[6][2] &
+          next(board[6][3]) = board[6][3] &
+          next(board[6][4]) = board[6][4] &
+          next(board[6][5]) = board[6][5] &
+          TRUE 
+        )
+      ) | 
+      ( 
+        !yellowwins & !redwins &
+        next(player) = case player = Yellow : Red;
+                            TRUE : Yellow;
+                       esac &
+        (board[4][5] = None) & 
+        (
+          next(board[4][1]) = case board[4][1] = None
+                                        : player;
+                                   TRUE : board[4][1];
+                              esac &
+          next(board[4][2]) = case board[4][1] != None & board[4][2] = None
+                                        : player;
+                                   TRUE : board[4][2];
+                              esac &
+          next(board[4][3]) = case board[4][1] != None & board[4][2] != None & board[4][3] = None
+                                        : player;
+                                   TRUE : board[4][3];
+                              esac &
+          next(board[4][4]) = case board[4][1] != None & board[4][2] != None & board[4][3] != None & board[4][4] = None
+                                        : player;
+                                   TRUE : board[4][4];
+                              esac &
+          next(board[4][5]) = case board[4][1] != None & board[4][2] != None & board[4][3] != None & board[4][4] != None & board[4][5] = None
+                                        : player;
+                                   TRUE : board[4][5];
+                              esac &
+          next(board[1][1]) = board[1][1] &
+          next(board[1][2]) = board[1][2] &
+          next(board[1][3]) = board[1][3] &
+          next(board[1][4]) = board[1][4] &
+          next(board[1][5]) = board[1][5] &
+          next(board[2][1]) = board[2][1] &
+          next(board[2][2]) = board[2][2] &
+          next(board[2][3]) = board[2][3] &
+          next(board[2][4]) = board[2][4] &
+          next(board[2][5]) = board[2][5] &
+          next(board[3][1]) = board[3][1] &
+          next(board[3][2]) = board[3][2] &
+          next(board[3][3]) = board[3][3] &
+          next(board[3][4]) = board[3][4] &
+          next(board[3][5]) = board[3][5] &
+          next(board[5][1]) = board[5][1] &
+          next(board[5][2]) = board[5][2] &
+          next(board[5][3]) = board[5][3] &
+          next(board[5][4]) = board[5][4] &
+          next(board[5][5]) = board[5][5] &
+          next(board[6][1]) = board[6][1] &
+          next(board[6][2]) = board[6][2] &
+          next(board[6][3]) = board[6][3] &
+          next(board[6][4]) = board[6][4] &
+          next(board[6][5]) = board[6][5] &
+          TRUE 
+        )
+      ) | 
+      ( 
+        !yellowwins & !redwins &
+        next(player) = case player = Yellow : Red;
+                            TRUE : Yellow;
+                       esac &
+        (board[5][5] = None) & 
+        (
+          next(board[5][1]) = case board[5][1] = None
+                                        : player;
+                                   TRUE : board[5][1];
+                              esac &
+          next(board[5][2]) = case board[5][1] != None & board[5][2] = None
+                                        : player;
+                                   TRUE : board[5][2];
+                              esac &
+          next(board[5][3]) = case board[5][1] != None & board[5][2] != None & board[5][3] = None
+                                        : player;
+                                   TRUE : board[5][3];
+                              esac &
+          next(board[5][4]) = case board[5][1] != None & board[5][2] != None & board[5][3] != None & board[5][4] = None
+                                        : player;
+                                   TRUE : board[5][4];
+                              esac &
+          next(board[5][5]) = case board[5][1] != None & board[5][2] != None & board[5][3] != None & board[5][4] != None & board[5][5] = None
+                                        : player;
+                                   TRUE : board[5][5];
+                              esac &
+          next(board[1][1]) = board[1][1] &
+          next(board[1][2]) = board[1][2] &
+          next(board[1][3]) = board[1][3] &
+          next(board[1][4]) = board[1][4] &
+          next(board[1][5]) = board[1][5] &
+          next(board[2][1]) = board[2][1] &
+          next(board[2][2]) = board[2][2] &
+          next(board[2][3]) = board[2][3] &
+          next(board[2][4]) = board[2][4] &
+          next(board[2][5]) = board[2][5] &
+          next(board[3][1]) = board[3][1] &
+          next(board[3][2]) = board[3][2] &
+          next(board[3][3]) = board[3][3] &
+          next(board[3][4]) = board[3][4] &
+          next(board[3][5]) = board[3][5] &
+          next(board[4][1]) = board[4][1] &
+          next(board[4][2]) = board[4][2] &
+          next(board[4][3]) = board[4][3] &
+          next(board[4][4]) = board[4][4] &
+          next(board[4][5]) = board[4][5] &
+          next(board[6][1]) = board[6][1] &
+          next(board[6][2]) = board[6][2] &
+          next(board[6][3]) = board[6][3] &
+          next(board[6][4]) = board[6][4] &
+          next(board[6][5]) = board[6][5] &
+          TRUE 
+        )
+      ) | 
+      ( 
+        !yellowwins & !redwins &
+        next(player) = case player = Yellow : Red;
+                            TRUE : Yellow;
+                       esac &
+        (board[6][5] = None) & 
+        (
+          next(board[6][1]) = case board[6][1] = None
+                                        : player;
+                                   TRUE : board[6][1];
+                              esac &
+          next(board[6][2]) = case board[6][1] != None & board[6][2] = None
+                                        : player;
+                                   TRUE : board[6][2];
+                              esac &
+          next(board[6][3]) = case board[6][1] != None & board[6][2] != None & board[6][3] = None
+                                        : player;
+                                   TRUE : board[6][3];
+                              esac &
+          next(board[6][4]) = case board[6][1] != None & board[6][2] != None & board[6][3] != None & board[6][4] = None
+                                        : player;
+                                   TRUE : board[6][4];
+                              esac &
+          next(board[6][5]) = case board[6][1] != None & board[6][2] != None & board[6][3] != None & board[6][4] != None & board[6][5] = None
+                                        : player;
+                                   TRUE : board[6][5];
+                              esac &
+          next(board[1][1]) = board[1][1] &
+          next(board[1][2]) = board[1][2] &
+          next(board[1][3]) = board[1][3] &
+          next(board[1][4]) = board[1][4] &
+          next(board[1][5]) = board[1][5] &
+          next(board[2][1]) = board[2][1] &
+          next(board[2][2]) = board[2][2] &
+          next(board[2][3]) = board[2][3] &
+          next(board[2][4]) = board[2][4] &
+          next(board[2][5]) = board[2][5] &
+          next(board[3][1]) = board[3][1] &
+          next(board[3][2]) = board[3][2] &
+          next(board[3][3]) = board[3][3] &
+          next(board[3][4]) = board[3][4] &
+          next(board[3][5]) = board[3][5] &
+          next(board[4][1]) = board[4][1] &
+          next(board[4][2]) = board[4][2] &
+          next(board[4][3]) = board[4][3] &
+          next(board[4][4]) = board[4][4] &
+          next(board[4][5]) = board[4][5] &
+          next(board[5][1]) = board[5][1] &
+          next(board[5][2]) = board[5][2] &
+          next(board[5][3]) = board[5][3] &
+          next(board[5][4]) = board[5][4] &
+          next(board[5][5]) = board[5][5] &
+          TRUE 
+        )
+      ) | 
+      ( (yellowwins | redwins | (board[1][5] != None & board[2][5] != None & board[3][5] != None & board[4][5] != None & board[5][5] != None & board[6][5] != None & TRUE) ) & 
+        (
+          next(board[1][1]) = board[1][1] &
+          next(board[1][2]) = board[1][2] &
+          next(board[1][3]) = board[1][3] &
+          next(board[1][4]) = board[1][4] &
+          next(board[1][5]) = board[1][5] &
+          next(board[2][1]) = board[2][1] &
+          next(board[2][2]) = board[2][2] &
+          next(board[2][3]) = board[2][3] &
+          next(board[2][4]) = board[2][4] &
+          next(board[2][5]) = board[2][5] &
+          next(board[3][1]) = board[3][1] &
+          next(board[3][2]) = board[3][2] &
+          next(board[3][3]) = board[3][3] &
+          next(board[3][4]) = board[3][4] &
+          next(board[3][5]) = board[3][5] &
+          next(board[4][1]) = board[4][1] &
+          next(board[4][2]) = board[4][2] &
+          next(board[4][3]) = board[4][3] &
+          next(board[4][4]) = board[4][4] &
+          next(board[4][5]) = board[4][5] &
+          next(board[5][1]) = board[5][1] &
+          next(board[5][2]) = board[5][2] &
+          next(board[5][3]) = board[5][3] &
+          next(board[5][4]) = board[5][4] &
+          next(board[5][5]) = board[5][5] &
+          next(board[6][1]) = board[6][1] &
+          next(board[6][2]) = board[6][2] &
+          next(board[6][3]) = board[6][3] &
+          next(board[6][4]) = board[6][4] &
+          next(board[6][5]) = board[6][5] &
+          TRUE 
+        )
+      )
+    )
+
