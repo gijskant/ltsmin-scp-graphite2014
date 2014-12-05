@@ -3,7 +3,7 @@
 /lib
 /include
 /share
-/src
+/src/*
 /mcrl2-13132
 /mcrl2-201409.0
 /mcrl2-201409.0.tar.gz
